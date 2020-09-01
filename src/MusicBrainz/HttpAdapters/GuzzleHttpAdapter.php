@@ -3,6 +3,7 @@
 namespace MusicBrainz\HttpAdapters;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\RequestOptions;
 use MusicBrainz\Exception;
 
 /**
@@ -51,16 +52,16 @@ class GuzzleHttpAdapter extends AbstractHttpAdapter
         }
 
         $requestOptions = [
-            'headers' => [
+            RequestOptions::HEADERS => [
                 'Accept' => 'application/json',
                 'User-Agent' => $options['user-agent']
             ],
-            'data' => $params
+            RequestOptions::QUERY => $params
         ];
 
         if ($isAuthRequired) {
             if ($options['user'] != null && $options['password'] != null) {
-                $requestOptions['auth'] = [
+                $requestOptions[RequestOptions::AUTH] = [
                     'user' => $options['user'],
                     'pass' => $options['password']
                 ];
