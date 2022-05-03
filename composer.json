@@ -1,7 +1,7 @@
 {
     "name": "iainmullan/musicbrainz-php",
     "type": "library",
-    "description": "A PHP 7 library for accessing the MusicBrainz API",
+    "description": "A PHP 7/8 library for accessing the MusicBrainz API",
     "keywords": ["musicbrainz", "library", "php", "api"],
     "homepage": "https://github.com/iainmullan/MusicBrainz",
     "license": "MIT",
@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.1|8.0",
         "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
