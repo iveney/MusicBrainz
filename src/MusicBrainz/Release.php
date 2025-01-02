@@ -58,6 +58,11 @@ class Release
     private $data;
 
     /**
+     * @var object
+     */
+    private $brainz;
+
+    /**
      * @param array       $release
      * @param MusicBrainz $brainz
      */
