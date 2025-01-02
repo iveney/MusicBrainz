@@ -4,6 +4,7 @@ namespace MusicBrainz\HttpAdapters;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
 use MusicBrainz\Exception;
 
 /**
@@ -77,6 +78,6 @@ class GuzzleHttpAdapter extends AbstractHttpAdapter
         // musicbrainz throttle
         sleep(1);
 
-        return \GuzzleHttp\json_decode($body, true);
+        return Utils::jsonDecode($body, true);
     }
 }
