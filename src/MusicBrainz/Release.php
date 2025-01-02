@@ -80,6 +80,7 @@ class Release
         $this->date     = isset($release['date']) ? (string)$release['date'] : '';
         $this->country  = isset($release['country']) ? (string)$release['country'] : '';
         $this->barcode  = isset($release['barcode']) ? (string)$release['barcode'] : '';
+        $this->artists = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
     }
 
     /**
