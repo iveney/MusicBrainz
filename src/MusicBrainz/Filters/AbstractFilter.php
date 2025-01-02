@@ -57,12 +57,8 @@ abstract class AbstractFilter
                 $params['query'] .= '+AND+';
             }
 
-            if (!in_array($key, $this->protectedArgs)) {
-                // Lucene escape characters
-                $val = urlencode(
-                    preg_replace('/([\+\-\!\(\)\{\}\[\]\^\~\*\?\:\\\\])/', '\\\\$1', $val)
-                );
-            }
+            $val = is_string($val) ? $val : '';
+
             // If the search string contains a space, wrap it in brackets/quotes
             // This isn't always wanted, but for the searches required in this
             // library, I'm going to do it.
