@@ -481,9 +481,9 @@ class MusicBrainz
     /**
      * @param       $entity
      * @param       $mbid
+     * @param array $includes
      * @param int   $limit
      * @param null  $offset
-     * @param array $includes
      * @param array $releaseType
      *
      * @return array
@@ -492,9 +492,9 @@ class MusicBrainz
     public function browseReleaseGroup(
         $entity,
         $mbid,
+        array $includes = array(),
         $limit = 25,
         $offset = null,
-        array $includes,
         $releaseType = array()
     ) {
         if (!in_array($entity, array('artist', 'release'))) {

@@ -1,5 +1,5 @@
 {
-    "name": "iainmullan/musicbrainz-php",
+    "name": "iveney/musicbrainz-php",
     "type": "library",
     "description": "A PHP 7/8 library for accessing the MusicBrainz API",
     "keywords": ["musicbrainz", "library", "php", "api"],
@@ -20,8 +20,8 @@
         }
     ],
     "require": {
-        "php": "^7.1|^8.0",
-        "guzzlehttp/guzzle": "^6.0"
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": ">=7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3"
