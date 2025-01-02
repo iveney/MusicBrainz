@@ -48,6 +48,12 @@ class Release
      * @var Artist[]
      */
     public $artists = array();
+
+    /**
+     * @var Label[]
+     */
+    public $labels = array();
+    
     /**
      * @var
      */
@@ -58,9 +64,9 @@ class Release
     private $data;
 
     /**
-     * @var object
+     * @var MusicBrainz
      */
-    private $brainz;
+    protected $brainz;
 
     /**
      * @param array       $release
@@ -80,7 +86,11 @@ class Release
         $this->date     = isset($release['date']) ? (string)$release['date'] : '';
         $this->country  = isset($release['country']) ? (string)$release['country'] : '';
         $this->barcode  = isset($release['barcode']) ? (string)$release['barcode'] : '';
-        $this->artists = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
+
+        $artist_info = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
+        $this->artists = array_map(fn($info) => new Artist($info['artist'], $brainz), $artist_info);
+        $labels = isset($release['label-info']) ? $release['label-info'] : array();
+        $this->labels = array_map(fn($label) => new Label($label['label'], $brainz), $labels);
     }
 
     /**

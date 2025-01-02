@@ -11,6 +11,12 @@ class Label
      * @var string
      */
     public $id;
+
+    /**
+     * @var string
+     */
+    public $type;
+
     /**
      * @var string
      */
@@ -36,6 +42,11 @@ class Label
      * @var array
      */
     private $data;
+
+    /**
+     * @var MusicBrainz
+     */
+    protected $brainz;
 
     /**
      * @param array       $label
