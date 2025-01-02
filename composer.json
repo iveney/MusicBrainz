@@ -3,7 +3,7 @@
     "type": "library",
     "description": "A PHP 7/8 library for accessing the MusicBrainz API",
     "keywords": ["musicbrainz", "library", "php", "api"],
-    "homepage": "https://github.com/iainmullan/MusicBrainz",
+    "homepage": "https://github.com/iveney/MusicBrainz",
     "license": "MIT",
     "authors": [
         {
@@ -16,6 +16,12 @@
             "name": "Iain Mullan",
             "email": "iain.mullan@gmail.com",
             "homepage": "https://iainmullan.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ivan Xiao",
+            "email": "me@ivanxiao.com",
+            "homepage": "https://ivanxiao.com",
             "role": "Developer"
         }
     ],
