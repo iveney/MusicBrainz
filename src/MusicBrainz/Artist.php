@@ -31,11 +31,11 @@ class Artist
     /**
      * @var string
      */
-    private $gender;
+    public $gender;
     /**
      * @var string
      */
-    private $country;
+    public $country;
     /**
      * @var string
      */
@@ -44,6 +44,12 @@ class Artist
      * @var string
      */
     private $endDate;
+
+    /**
+     * @var string
+     */
+    public $disambiguation;
+
     /**
      * @var array
      */
@@ -74,6 +80,7 @@ class Artist
         $this->sortName  = isset($artist['sort-name']) ? (string)$artist['sort-name'] : '';
         $this->gender    = isset($artist['gender']) ? (string)$artist['gender'] : '';
         $this->country   = isset($artist['country']) ? (string)$artist['country'] : '';
+        $this->disambiguation   = isset($artist['disambiguation']) ? (string)$artist['disambiguation'] : '';
         $this->beginDate = isset($artist['life-span']['begin']) ? $artist['life-span']['begin'] : null;
         $this->endDate   = isset($artist['life-span']['ended']) ? $artist['life-span']['ended'] : null;
     }
@@ -120,6 +127,20 @@ class Artist
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return array
+     */
+    public function getArea() {
+        return $this->data["area"] ?? array();
+    }
+
+    /**
+     * @return array
+     */
+    public function getAliases() {
+        return $this->data["aliases"] ?? array();
     }
 }
 
