@@ -44,6 +44,12 @@ class Release
      * @var string
      */
     public $barcode;
+
+    /**
+     * @var int
+     */
+    public $trackCount = 0;
+
     /**
      * @var Artist[]
      */
@@ -86,6 +92,7 @@ class Release
         $this->date     = isset($release['date']) ? (string)$release['date'] : '';
         $this->country  = isset($release['country']) ? (string)$release['country'] : '';
         $this->barcode  = isset($release['barcode']) ? (string)$release['barcode'] : '';
+        $this->trackCount = $release['track-count'] ?? 0;
 
         $artist_info = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
         $this->artists = array_map(fn($info) => new Artist($info['artist'], $brainz), $artist_info);
