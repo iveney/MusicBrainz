@@ -552,7 +552,7 @@ class MusicBrainz
      *
      * @return int
      */
-    public function isValidMBID($mbid)
+    public function isValidMBID(string $mbid)
     {
         return preg_match("/^(\{)?[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}(?(1)\})$/i", $mbid);
     }
