@@ -159,5 +159,26 @@ class Artist
         $artistNames = array_map(fn($artist) => $artist->name, $artists);
         return implode($concat, $artistNames);
     }
+
+    /**
+     * Util function to return primary aliases
+     * @return array
+     */ 
+    public function getPrimaryAliases() {
+        return array_filter($this->getAliases(), function ($a) {
+            $primary = $a["primary"] ?? false;
+            return $primary;
+        });
+    } 
+
+    /**
+     * Util function to return primary aliases
+     * @return string
+     */ 
+    public function getPrimaryAliasesString() {
+        $primaryAliases = $this->getPrimaryAliases();
+        $primaryAliasesNames = array_map(fn($a) => $a['name'], $primaryAliases);
+        return implode(', ', $primaryAliasesNames);
+    }
 }
 
