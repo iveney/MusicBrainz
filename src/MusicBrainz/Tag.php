@@ -15,11 +15,15 @@ class Tag
     /**
      * @var string
      */
-    public $score;
+    public $count;
     /**
      * @var array
      */
     private $data;
+    /**
+     * @var MusicBrainz
+     */
+    private $brainz;
 
     /**
      * @param array       $tag
@@ -30,7 +34,7 @@ class Tag
         $this->data   = $tag;
         $this->brainz = $brainz;
 
-        $this->name  = isset($tag['name']) ? (string)$tag['name'] : '';
-        $this->score = isset($tag['score']) ? (string)$tag['score'] : '';
+        $this->name  = $tag['name'] ?? '';
+        $this->count = $tag['count'] ?? '';
     }
 }

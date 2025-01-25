@@ -24,6 +24,15 @@ class ReleaseGroup
      * @var Release[]
      */
     private $releases = array();
+    /**
+     * @var Artist[]
+     */
+    private $artists = array();
+    /**
+     * @var Tag[]
+     */
+    private $tags = array();
+
 
     /**
      * @param array       $releaseGroup
@@ -34,7 +43,7 @@ class ReleaseGroup
         $this->data   = $releaseGroup;
         $this->brainz = $brainz;
 
-        $this->id = isset($releaseGroup['id']) ? (string)$releaseGroup['id'] : '';
+        $this->id = (string)$releaseGroup['id'] ?? '';
     }
 
     /**
@@ -75,5 +84,58 @@ class ReleaseGroup
         }
 
         return $this->releases;
+    }
+
+    /**
+     * @return Artist[]
+     */
+    public function getArtists()
+    {
+        if (!empty($this->artists)) {
+            return $this->artists;
+        }
+
+        $artist_info = $this->data["artist-credit"] ?? array();
+        $this->artists = array_map(fn($info) => new Artist($info['artist'], $this->brainz), $artist_info);
+
+        return $this->artists;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return $this->data['count'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrimaryType()
+    {
+        return $this->data['primary-type'] ?? '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstReleaseDate()
+    {
+        return $this->data['first-release-date'] ?? '';
+    }
+
+    /**
+     * @return Tag[]
+     */
+    public function getTags()
+    {
+        if (!empty($this->tags)) {
+            return $this->tags;
+        }
+
+        $this->tags = array_map(fn($tag) => new Tag($tag, $this->brainz), $this->data["tags"] ?? array());
+
+        return $this->tags;
     }
 }
