@@ -57,12 +57,20 @@ class Label
         $this->data   = $label;
         $this->brainz = $brainz;
 
-        $this->id       = isset($label['id']) ? (string)$label['id'] : '';
-        $this->type     = isset($label['type']) ? (string)$label['type'] : '';
-        $this->score    = isset($label['score']) ? (int)$label['score'] : 0;
-        $this->sortName = isset($label['sort-name']) ? (string)$label['sort-name'] : '';
-        $this->name     = isset($label['name']) ? (string)$label['name'] : '';
-        $this->country  = isset($label['country']) ? (string)$label['country'] : '';
-        $this->aliases  = isset($label['aliases']) ? $label['aliases'] : array();
+        $this->id       = $label['id'] ?? '';
+        $this->type     = $label['type'] ?? '';
+        $this->score    = (int)($label['score'] ?? 0);
+        $this->sortName = $label['sort-name'] ?? '';
+        $this->name     = $label['name'] ?? '';
+        $this->country  = $label['country'] ?? '';
+        $this->aliases  = $label['aliases'] ?? array();
+    }
+
+    /**
+     * converts label-info array to Label[]
+     * @return Label[]
+     */ 
+    public static function fromArray(array $labelInfo, MusicBrainz $brainz) {
+        return array_map(fn($info) => new Artist($info['label'], $brainz), $labelInfo);
     }
 }

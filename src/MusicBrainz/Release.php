@@ -94,10 +94,10 @@ class Release
         $this->barcode  = isset($release['barcode']) ? (string)$release['barcode'] : '';
         $this->trackCount = $release['track-count'] ?? 0;
 
-        $artist_info = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
-        $this->artists = array_map(fn($info) => new Artist($info['artist'], $brainz), $artist_info);
-        $labels = isset($release['label-info']) ? $release['label-info'] : array();
-        $this->labels = array_map(fn($label) => new Label($label['label'], $brainz), $labels);
+        $artistCredit = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
+        $this->artists = Artist::fromArray($artistCredit, $brainz);
+        $labelInfo = $release['label-info'] ?? array();
+        $this->labels = Label::fromArray($labelInfo, $brainz);
     }
 
     /**
