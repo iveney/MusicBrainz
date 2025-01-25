@@ -83,18 +83,18 @@ class Release
         $this->data   = $release;
         $this->brainz = $brainz;
 
-        $this->id       = isset($release['id']) ? (string)$release['id'] : '';
-        $this->title    = isset($release['title']) ? (string)$release['title'] : '';
-        $this->status   = isset($release['status']) ? (string)$release['status'] : '';
-        $this->quality  = isset($release['quality']) ? (string)$release['quality'] : '';
-        $this->language = isset($release['text-representation']['language']) ? (string)$release['text-representation']['language'] : '';
-        $this->script   = isset($release['text-representation']['script']) ? (string)$release['text-representation']['script'] : '';
-        $this->date     = isset($release['date']) ? (string)$release['date'] : '';
-        $this->country  = isset($release['country']) ? (string)$release['country'] : '';
-        $this->barcode  = isset($release['barcode']) ? (string)$release['barcode'] : '';
-        $this->trackCount = $release['track-count'] ?? 0;
+        $this->id       = $release['id'] ?? '';
+        $this->title    = $release['title'] ?? '';
+        $this->status   = $release['status'] ?? '';
+        $this->quality  = $release['quality'] ?? '';
+        $this->language = $release['text-representation']['language'] ?? '';
+        $this->script   = $release['text-representation']['script'] ?? '';
+        $this->date     = $release['date'] ?? '';
+        $this->country  = $release['country'] ?? '';
+        $this->barcode  = $release['barcode'] ?? '';
+        $this->trackCount = (int)($release['track-count'] ?? 0);
 
-        $artistCredit = isset($release['artist-credit']) ? (array)$release['artist-credit'] : array();
+        $artistCredit = $release['artist-credit'] ?? array();
         $this->artists = Artist::fromArray($artistCredit, $brainz);
         $labelInfo = $release['label-info'] ?? array();
         $this->labels = Label::fromArray($labelInfo, $brainz);
