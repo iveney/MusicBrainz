@@ -150,5 +150,14 @@ class Artist
     public static function fromArray(array $artistCredit, MusicBrainz $brainz) {
         return array_map(fn($credit) => new Artist($credit['artist'], $brainz), $artistCredit);
     }
+
+    /**
+     * Util function to implode Artist[] as a string
+     * @return string
+     */ 
+    public static function arrayToString(array $artists, string $concat = " & ") {
+        $artistNames = array_map(fn($artist) => $artist->name, $artists);
+        return implode($concat, $artistNames);
+    }
 }
 
