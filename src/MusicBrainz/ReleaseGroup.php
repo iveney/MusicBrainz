@@ -95,8 +95,8 @@ class ReleaseGroup
             return $this->artists;
         }
 
-        $artist_info = $this->data["artist-credit"] ?? array();
-        $this->artists = array_map(fn($info) => new Artist($info['artist'], $this->brainz), $artist_info);
+        $artistCredit = $this->data["artist-credit"] ?? array();
+        $this->artists = Artist::fromArray($artistCredit, $this->brainz);
 
         return $this->artists;
     }

@@ -74,15 +74,15 @@ class Artist
         $this->data   = $artist;
         $this->brainz = $brainz;
 
-        $this->id        = isset($artist['id']) ? (string)$artist['id'] : '';
-        $this->type      = isset($artist['type']) ? (string)$artist['type'] : '';
-        $this->name      = isset($artist['name']) ? (string)$artist['name'] : '';
-        $this->sortName  = isset($artist['sort-name']) ? (string)$artist['sort-name'] : '';
-        $this->gender    = isset($artist['gender']) ? (string)$artist['gender'] : '';
-        $this->country   = isset($artist['country']) ? (string)$artist['country'] : '';
-        $this->disambiguation   = isset($artist['disambiguation']) ? (string)$artist['disambiguation'] : '';
-        $this->beginDate = isset($artist['life-span']['begin']) ? $artist['life-span']['begin'] : null;
-        $this->endDate   = isset($artist['life-span']['ended']) ? $artist['life-span']['ended'] : null;
+        $this->id        = $artist['id'] ?? '';
+        $this->type      = $artist['type'] ?? '';
+        $this->name      = $artist['name'] ?? '';
+        $this->sortName  = $artist['sort-name'] ?? '';
+        $this->gender    = $artist['gender'] ?? '';
+        $this->country   = $artist['country'] ?? '';
+        $this->disambiguation   = $artist['disambiguation'] ?? '';
+        $this->beginDate = $artist['life-span']['begin'] ?? null;
+        $this->endDate   = $artist['life-span']['ended'] ?? null;
     }
 
     /**
@@ -141,6 +141,14 @@ class Artist
      */
     public function getAliases() {
         return $this->data["aliases"] ?? array();
+    }
+
+    /**
+     * converts an artist-credit array to Artist[]
+     * @return Artist[]
+     */ 
+    public static function fromArray(array $artistCredit, MusicBrainz $brainz) {
+        return array_map(fn($credit) => new Artist($credit['artist'], $brainz), $artistCredit);
     }
 }
 
