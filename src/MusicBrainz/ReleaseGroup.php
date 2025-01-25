@@ -43,7 +43,7 @@ class ReleaseGroup
         $this->data   = $releaseGroup;
         $this->brainz = $brainz;
 
-        $this->id = (string)$releaseGroup['id'] ?? '';
+        $this->id = $releaseGroup['id'] ?? '';
     }
 
     /**
