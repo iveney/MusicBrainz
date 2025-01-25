@@ -71,7 +71,7 @@ class Label
      * @return Label[]
      */ 
     public static function fromArray(array $labelInfo, MusicBrainz $brainz) {
-        return array_map(fn($info) => new Artist($info['label'], $brainz), $labelInfo);
+        return array_map(fn($info) => new Label($info['label'] ?? array(), $brainz), $labelInfo);
     }
 
     /**
