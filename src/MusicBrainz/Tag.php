@@ -37,4 +37,13 @@ class Tag
         $this->name  = $tag['name'] ?? '';
         $this->count = $tag['count'] ?? '';
     }
+
+    /**
+     * Util function to implode Tag[] as a string
+     * @return string
+     */ 
+    public static function arrayToString(array $tags, string $concat = ", ") {
+        $tagCounts = array_map(fn($tag) => "$tag->name ($tag->count)", $tags);
+        return implode($concat, $tagCounts);
+    }
 }
