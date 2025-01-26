@@ -150,4 +150,12 @@ class Release
 
         return $releaseDate;
     }
+
+    /**
+     * @return int
+     */
+    public function getScore()
+    {
+        return (int)($this->data['score'] ?? 0);
+    }
 }

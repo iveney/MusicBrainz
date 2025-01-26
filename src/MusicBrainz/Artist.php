@@ -98,9 +98,9 @@ class Artist
      */
     public function getScore()
     {
-        return isset($this->data['score']) ? (int)$this->data['score'] : 0;
+        return (int)($this->data['score'] ?? 0);
     }
-
+    
     /**
      * @return string
      */

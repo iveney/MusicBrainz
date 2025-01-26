@@ -63,11 +63,11 @@ class ReleaseGroup
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getScore()
     {
-        return $this->data['score'];
+        return (int)($this->data['score'] ?? 0);
     }
 
     /**
