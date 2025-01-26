@@ -59,9 +59,9 @@ class Release
      * @var Label[]
      */
     public $labels = array();
-    
+
     /**
-     * @var
+     * @var array
      */
     protected $releaseDate;
     /**
@@ -109,19 +109,21 @@ class Release
     }
 
     /**
-     * Get's the earliest release date
+     * Gets the earliest release date
      * @return \DateTime
      */
     public function getReleaseDate()
     {
-        if (null != $this->releaseDate) {
+        if ($this->releaseDate != null) {
             return $this->releaseDate;
         }
 
         // If there is no release date set, look through the release events
         if (!isset($this->data['date']) && isset($this->data['release-events'])) {
             return $this->getReleaseEventDates($this->data['release-events']);
-        } elseif (isset($this->data['date'])) {
+        }
+
+        if (isset($this->data['date'])) {
             return new \DateTime($this->data['date']);
         }
 
@@ -131,7 +133,7 @@ class Release
     /**
      * @param array $releaseEvents
      *
-     * @return array
+     * @return \DateTime
      */
     public function getReleaseEventDates(array $releaseEvents)
     {
