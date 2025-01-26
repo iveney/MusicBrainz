@@ -41,12 +41,12 @@ class Label
     /**
      * @var array
      */
-    private $data;
+    private array $data;
 
     /**
      * @var MusicBrainz
      */
-    protected $brainz;
+    protected MusicBrainz $brainz;
 
     /**
      * @param array       $label
@@ -69,16 +69,18 @@ class Label
     /**
      * converts label-info array to Label[]
      * @return Label[]
-     */ 
-    public static function fromArray(array $labelInfo, MusicBrainz $brainz) {
+     */
+    public static function fromArray(array $labelInfo, MusicBrainz $brainz): array
+    {
         return array_map(fn($info) => new Label($info['label'] ?? array(), $brainz), $labelInfo);
     }
 
     /**
      * Util function to implode Label[] as a string
      * @return string
-     */ 
-    public static function arrayToString(array $labels, string $concat = ", ") {
+     */
+    public static function arrayToString(array $labels, string $concat = ", "): string
+    {
         $labels = array_map(fn($label) => $label->name, $labels);
         return implode($concat, $labels);
     }
